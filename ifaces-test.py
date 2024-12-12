@@ -26,5 +26,10 @@ for iface in ifaddr_listif:
     print(indent(iface.name, '  '))
     print(f"  Addresses of interface {iface.name}")
     for ip in iface.ips:
-       print(indent(pformat(ip.ip), '    '))
+       is_ipv6 = type(ip.ip) is tuple
+       if is_ipv6:
+         print("    IPv6:")
+       else:
+         print("    IPv4: ")
+       print(indent(pformat(ip.ip), '      '))
 
